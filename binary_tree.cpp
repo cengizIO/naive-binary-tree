@@ -3,9 +3,9 @@
 #include <iostream>
 #include <memory>
 
-
 std::ostream& operator<<(std::ostream& os, const Node& node) {
 	os << "Node { keyValue: " << node.keyValue;
+
 	if (node.left != nullptr)
 		os << ", left: " << *node.left;
 	if (node.right != nullptr)
@@ -97,16 +97,15 @@ void BinaryTree::destroyTree()
 
 int main()
 {
-	std::unique_ptr<BinaryTree> t(new BinaryTree);
-	t->insert(10);
-	t->insert(7);
-	t->insert(5);
-	t->insert(11);
+	std::shared_ptr<BinaryTree> tree(new BinaryTree);
 
-	std::shared_ptr<Node> result(t->search(10));
+	for (auto &i : { 10, 7, 5, 11 }) {
+		tree->insert(i);
+	}
 
-	if (result != nullptr)
+	if (Node *result = tree->search(10)) {
 		std::cout << *result << "\n";
+	}
 
 }
 
