@@ -94,18 +94,3 @@ void BinaryTree::destroyTree()
 {
 	destroyTree(root);
 }
-
-int main()
-{
-	std::shared_ptr<BinaryTree> tree(new BinaryTree);
-
-	for (auto &i : { 10, 7, 5, 11 }) {
-		tree->insert(i);
-	}
-
-	if (Node *result = tree->search(10)) {
-		std::cout << *result << "\n";
-	}
-
-}
-
